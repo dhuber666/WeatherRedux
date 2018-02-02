@@ -2,28 +2,24 @@
 import React from 'react';
 import {connect } from 'react-redux';
 import Chart from '../components/chart';
+import GoogleMap from '../components/google-map';
 
 
 
 
 class WeatherTable extends React.Component {
 
-    
-
-
     renderWeather = (weather, id) => {
 
     const temperatures = weather.list.map((data) => data.main.temp);
     const pressures = weather.list.map((data) => data.main.pressure);
     const humidities = weather.list.map((data) => data.main.humidity);
+    let long = weather.city.coord.lon;
+    let lat = weather.city.coord.lat;
 
-       if(weather === undefined) {
-           return;
-       }
-        
         return (
-            <tr key={id}>
-                <td> {weather.city.name} </td>
+            <tr key={id} className='row'>
+                <td> <GoogleMap long={long} lat={lat} /> </td>
                 <td> 
                     <Chart color='green' data={temperatures} />
                 </td>
@@ -33,9 +29,6 @@ class WeatherTable extends React.Component {
         )
 
     } 
-
-    
-
 
     render () {
         console.log(this.props.weather);

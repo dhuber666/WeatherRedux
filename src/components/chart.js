@@ -7,7 +7,7 @@ export default function chart(props) {
 
 
     return (
-        <div>
+        <div className='chart'>
             <Sparklines data={props.data}>
                 <SparklinesLine color={props.color} />
                 <SparklinesReferenceLine type="avg" />
